@@ -1,0 +1,41 @@
+{
+  "name": "riotgear-datepicker",
+  "version": "1.0.0",
+  "description": "A simpe date picker",
+  "main": "dist/rg-datepicker.min.js",
+  "scripts": {
+    "lint": "jshint . --exclude-path=.gitignore",
+    "riot": "riot src dist/rg-datepicker.js",
+    "watch": "riot -w src dist/rg-datepicker.js",
+    "postriot": "riot demo",
+    "uglify": "uglifyjs --output dist/rg-datepicker.min.js -- dist/rg-datepicker.js",
+    "build": "npm run riot && npm run uglify"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RiotGear/rg-datepicker.git"
+  },
+  "keywords": [
+    "riotjs",
+    "riot",
+    "component",
+    "toggle"
+  ],
+  "author": "Julian Reyes Escrigas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RiotGear/rg-datepicker/issues"
+  },
+  "homepage": "https://github.com/RiotGear/rg-datepicker",
+  "devDependencies": {
+    "jshint": "^2.7.0",
+    "riot": "^2.2.1",
+    "uglify-js": "^2.4.21"
+  },
+  "dependencies": {
+    "moment": "^2.10.3"
+  }
+}
