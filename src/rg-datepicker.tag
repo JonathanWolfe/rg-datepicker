@@ -106,7 +106,7 @@
      * Handle the clicks on dates
      */
     this.changeDate = (e) => {
-      this.date = e.item[1]
+      this.date = e.item.day[1]
       this.buildCalendar()
     }
 
