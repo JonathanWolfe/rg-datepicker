@@ -5,9 +5,8 @@
   "main": "dist/rg-datepicker.min.js",
   "scripts": {
     "lint": "jshint . --exclude-path=.gitignore",
-    "riot": "riot src dist/rg-datepicker.js",
-    "watch": "riot -w src dist/rg-datepicker.js",
-    "postriot": "riot demo",
+    "riot": "riot src dist/rg-datepicker.js --type es6",
+    "watch": "riot -w src dist/rg-datepicker.js  --type es6",
     "uglify": "uglifyjs --output dist/rg-datepicker.min.js -- dist/rg-datepicker.js",
     "build": "npm run riot && npm run uglify"
   },
