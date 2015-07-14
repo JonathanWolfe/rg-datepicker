@@ -15,7 +15,9 @@
         </thead>
         <tbody>
           <tr each={week in weeks}>
-            <td each={day in week} onclick={parent.parent.changeDate}>
+            <td each={day in week}
+              onclick={parent.parent.changeDate}
+              class={in: parent.parent.inMonth(day[1])}>
               {day[0]}
             </td>
           </tr>
@@ -34,7 +36,15 @@
 
     .container .datepicker-cal tbody tr td {
       cursor: pointer;
+      font-style: italic;
+      color: gray;
     }
+
+    .container .datepicker-cal tbody tr td.in {
+      font-style: normal;
+      color: darkblue;
+    }
+
     .container .datepicker-cal tbody tr td:hover {
       background: #ccc;
     }
@@ -116,6 +126,8 @@
     this.toggle = (e) => {
       this.opened = !this.opened
     }
+
+    this.inMonth = (date) => moment(this.date).isSame(moment(date), 'month')
   </script>
 
 </rg-datepicker>
