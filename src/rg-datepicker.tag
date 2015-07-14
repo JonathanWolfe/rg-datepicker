@@ -2,10 +2,10 @@
   <div class="container">
     <input
       type="text"
-      class="field { open: opened}"
       onclick="{toggle}"
       value="{dateText()}"
-      readonly/>
+      readonly>
+
     <div class="datepicker-cal" show={opened}>
       <table>
         <thead>
@@ -44,12 +44,6 @@
     this.date = opts.date || new Date();
     this.days = [];
 
-    let calendarDiv;
-
-    this.dateText = () => {
-      return moment(this.date).format('LL')
-    }
-
     let handleClickOutside = (e) => {
 			if (!this.root.contains(e.target) && this.opened) {
         this.toggle()
@@ -67,37 +61,44 @@
     })
 
     /**
+     * Show formated date
+     */
+    this.dateText = () => {
+      return moment(this.date).format('LL')
+    }
+
+    /**
      * Create the array of dates to shown
      */
     this.buildCalendar = () => {
-      let i = 0;
-      let m = moment(this.date)
-      let end = moment(m)
-      let weekCount = m.format('w')
+      let cursor = moment(this.date)
+      let end = moment(cursor)
       let week = []
-      m.startOf('month')
-      m.day(0)
+
+      // Set cursor to start of the month and start of the week
+      cursor.startOf('month')
+      cursor.day(0)
+      // end of month and end of week
       end.endOf('month')
       end.day(6)
 
       this.days = []
       this.weeks = []
 
-      while (m.isBefore(end)) {
+      do {
         if (this.days.length < 7) {
-          this.days.push(m.format('dd'))
+          this.days.push(cursor.format('dd'))
         }
 
-        week.push([m.format('DD'), moment(m)])
-        if (m.day() > 5) {
+        week.push([cursor.format('DD'), moment(cursor)])
+        if (cursor.day() > 5) {
           this.weeks.push(week)
           week = []
         }
 
-        m = m.add(1, 'days')
-      }
+        cursor = cursor.add(1, 'days')
+      } while (cursor.isBefore(end))
 
-      this.weeks.push(week)
       this.update()
     }
 
