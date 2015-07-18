@@ -31,7 +31,7 @@
   "homepage": "https://github.com/RiotGear/rg-datepicker",
   "devDependencies": {
     "jshint": "^2.7.0",
-    "riot": "^2.2.1",
+    "riot": "^2.2.2",
     "uglify-js": "^2.4.21"
   },
   "dependencies": {

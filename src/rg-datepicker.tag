@@ -16,8 +16,8 @@
         <tbody>
           <tr each={week in weeks}>
             <td each={day in week}
-              onclick={parent.parent.changeDate}
-              class={in: parent.parent.inMonth(day[1])}>
+              onclick={changeDate}
+              class={in: inMonth(day[1])}>
               {day[0]}
             </td>
           </tr>
