@@ -10,9 +10,9 @@
       <table>
         <thead>
           <tr>
-            <th onclick={prevMonth}>&laquo;</th>
+            <th class="selector" onclick={prevMonth}>&laquo;</th>
             <th colspan="5">{dateMonthText()}</th>
-            <th onclick={nextMonth}>&raquo;</th>
+            <th class="selector" onclick={nextMonth}>&raquo;</th>
           </tr>
           <tr>
             <th each={day in days}>{day}</th>
@@ -52,6 +52,10 @@
 
     .container .datepicker-cal tbody tr td:hover {
       background: #ccc;
+    }
+
+    .container .selector {
+      cursor: pointer;
     }
   </style>
 
