@@ -10,6 +10,11 @@
       <table>
         <thead>
           <tr>
+            <th onclick={prevMonth}>&laquo;</th>
+            <th colspan="5">{dateMonthText()}</th>
+            <th onclick={nextMonth}>&raquo;</th>
+          </tr>
+          <tr>
             <th each={day in days}>{day}</th>
           </tr>
         </thead>
@@ -70,11 +75,21 @@
       document.removeEventListener('click', handleClickOutside)
     })
 
+    this.on('update', () => this.buildCalendar())
+
     /**
      * Show formated date
      */
     this.dateText = () => {
       return moment(this.date).format('LL')
+    }
+
+    /**
+     * Show completed month name
+     * @return {[type]} [description]
+     */
+    this.dateMonthText = () => {
+      return moment(this.date).format('MMMM')
     }
 
     /**
@@ -108,8 +123,6 @@
 
         cursor = cursor.add(1, 'days')
       } while (cursor.isBefore(end))
-
-      this.update()
     }
 
     /**
@@ -117,7 +130,23 @@
      */
     this.changeDate = (e) => {
       this.date = e.item.day[1]
-      this.buildCalendar()
+      this.update()
+    }
+
+    /**
+     * Handle the previous month change
+     */
+    this.prevMonth = (e) => {
+      this.date = moment(this.date).subtract(1, 'month').toDate()
+      this.update()
+    }
+
+    /**
+     * Handle the next month change
+     */
+    this.nextMonth = (e) => {
+      this.date = moment(this.date).add(1, 'month').toDate()
+      this.update()
     }
 
     /**
