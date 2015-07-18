@@ -133,7 +133,7 @@
      * Handle the clicks on dates
      */
     this.changeDate = (e) => {
-      this.date = e.item.day[1]
+      this.date = opts.date = e.item.day[1]
       this.update()
     }
 
