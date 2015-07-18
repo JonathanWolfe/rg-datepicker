@@ -22,7 +22,11 @@
           <tr each={week in weeks}>
             <td each={day in week}
               onclick={changeDate}
-              class={in: inMonth(day[1])}>
+              class={
+              in: inMonth(day[1]),
+              selected: selectedDate(day[1]),
+              today: isToday(day[1])
+              }>
               {day[0]}
             </td>
           </tr>
@@ -48,6 +52,18 @@
     .container .datepicker-cal tbody tr td.in {
       font-style: normal;
       color: darkblue;
+    }
+
+    .container .datepicker-cal tbody tr td.today {
+      font-style: normal;
+      color: white;
+      background: lightblue;
+    }
+
+    .container .datepicker-cal tbody tr td.selected {
+      font-style: normal;
+      color: white;
+      background: darkblue;
     }
 
     .container .datepicker-cal tbody tr td:hover {
@@ -133,7 +149,7 @@
      * Handle the clicks on dates
      */
     this.changeDate = (e) => {
-      this.date = opts.date = e.item.day[1]
+      this.date = opts.date = moment(e.item.day[1]).toDate()
       this.update()
     }
 
@@ -160,7 +176,20 @@
       this.opened = !this.opened
     }
 
+    /**
+     * Tell if the date must be marked for current month
+     */
     this.inMonth = (date) => moment(this.date).isSame(moment(date), 'month')
+
+    /**
+     * Tell if the date is the selected date
+     */
+    this.selectedDate = (date) => moment(this.date).isSame(moment(date), 'day')
+
+    /**
+     * tell if the date is today
+     */
+    this.isToday = (date) => moment().isSame(moment(date), 'day')
   </script>
 
 </rg-datepicker>
