@@ -1,6 +1,6 @@
 {
   "name": "riotgear-datepicker",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Datepicker component",
   "main": "dist/rg-datepicker.min.js",
   "scripts": {
@@ -31,6 +31,7 @@
   "homepage": "https://github.com/RiotGear/rg-datepicker",
   "devDependencies": {
     "jshint": "~2.7.0",
+    "moment": "^2.10.3",
     "riot": "~2.2.2",
     "uglify-js": "~2.4.21"
   }
