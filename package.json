@@ -1,6 +1,6 @@
 {
   "name": "riotgear-datepicker",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Datepicker component",
   "main": "dist/rg-datepicker.min.js",
   "scripts": {

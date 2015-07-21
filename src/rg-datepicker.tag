@@ -178,8 +178,8 @@
 			text-align: center;
 			background-color: white;
 			border: 1px solid #D3D3D3;
-			padding: 0 5px;
-			width: 310px;
+			padding: 5px;
+			width: 330px;
 			margin-top: 10px;
 			left: 50%;
 			-webkit-transform: translateX(-50%);
@@ -253,10 +253,10 @@
 			-webkit-flex: 0 0 14.28%;
 			-ms-flex: 0 0 14.28%;
 			flex: 0 0 14.28%;
-			padding: 12px;
+			padding: 10px;
+			border-radius: 100%;
 			box-sizing: border-box;
 			font-size: 0.8em;
-			border-radius: 100%;
 			font-weight: normal;
 			border: 2px solid transparent;
 			color: #cacaca;
