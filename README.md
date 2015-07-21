@@ -26,8 +26,8 @@ this.selected = function (date) { ... }
 ```
 
 - `date` defaults to today if you don't specify one.
-- `format` is what the format you would like to have output to the text box. Defaults to 'LL' = July 21, 2015
-- `months` and `years` when set to false will turn of the month and year incredment controls.
+- `format` format of the date in the text box. Defaults to 'LL' = "July 21, 2015"
+- `months` and `years` when set to false will turn off the month and year incredment controls.
 
 This component relies on a third party date management library called **Moment**. You can find more information 
 about Moment from their website at <a href="http://momentjs.com/">http://momentjs.com/</a>.
