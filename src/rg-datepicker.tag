@@ -1,5 +1,7 @@
 <rg-datepicker>
 
+	{ opts.months}
+
 	<div class="container { open: opened }">
 		<input
 			type="text"
@@ -8,11 +10,24 @@
 			readonly>
 
 		<div class="calendar" show="{ opened }">
-			<div class="grid grid-row">
+			<div class="grid grid-row" if="{ opts.years != 'false' }">
+				<div class="selector" onclick="{ prevYear }">&lsaquo;</div>
+				<span class="year">{ date.format('YYYY') }</span>
+				<div class="selector" onclick="{ nextYear }">&rsaquo;</div>
+			</div>
+			<div class="grid grid-row" if="{ opts.years == 'false' }">
+				<span class="year fill">{ date.format('YYYY') }</span>
+			</div>
+
+			<div class="grid grid-row" if="{ opts.months != 'false' }">
 				<div class="selector" onclick="{ prevMonth }">&lsaquo;</div>
 				<span class="month">{ date.format('MMMM') }</span>
 				<div class="selector" onclick="{ nextMonth }">&rsaquo;</div>
 			</div>
+			<div class="grid grid-row" if="{ opts.months == 'false' }">
+				<span class="month fill">{ date.format('MMMM') }</span>
+			</div>
+
 			<div class="grid grid-row">
 				<span class="day-name" each="{ day in dayNames }">{ day }</span>
 			</div>
@@ -102,6 +117,18 @@
 			if (opts.onselect) {
 				opts.onselect(_this.date);
 			}
+			buildCalendar();
+		};
+
+		// Handle the previous year change
+		_this.prevYear = function () {
+			_this.date.subtract(1, 'year');
+			buildCalendar();
+		};
+
+		// Handle the next month change
+		_this.nextYear = function () {
+			_this.date.add(1, 'year');
 			buildCalendar();
 		};
 
@@ -201,12 +228,18 @@
 			flex: 0 0 15%;
 		}
 
-		.month {
+		.year, .month {
 			text-transform: uppercase;
 			font-weight: normal;
 			-webkit-flex: 0 0 70%;
 			-ms-flex: 0 0 70%;
 			flex: 0 0 70%;
+		}
+
+		.fill {
+			-webkit-flex: 0 0 100%;
+			-ms-flex: 0 0 100%;
+			flex: 0 0 100%;
 		}
 
 		.day-name {
