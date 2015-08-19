@@ -5,22 +5,15 @@
 	<rg-datepicker date="2015-07-18" format="LL" onopen="{ opened }" onclose="{ closed }" onselect="{ selected }"></rg-datepicker>
 
 	<script>
-		var _this = this;
-_this.opened = function () {
-	console.log('opened');
-};
+		this.opened = () => console.log('opened')
 
-_this.closed = function (date) {
-	_this.date = date;
-	console.log('closed');
-	console.log(date);
-	_this.update();
-};
+		this.closed = date => {
+			this.date = date
+			console.log('closed', date)
+			this.update()
+		};
 
-_this.selected = function (date) {
-	console.log('selected');
-	console.log(date);
-};
+		this.selected = date => console.log('selected', date)
 	</script>
 
 </demo-app>

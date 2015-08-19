@@ -49,109 +49,98 @@
 	</div>
 
 	<script>
-		var _this = this;
-		_this.date = moment(opts.date || new Date());
+		this.date = moment(opts.date || new Date())
 
-		function handleClickOutside(e) {
-			if (!_this.root.contains(e.target) && _this.opened) {
-				if (opts.onclose) {
-					opts.onclose(_this.date);
-				}
-				_this.opened = false;
-				_this.update();
+		var handleClickOutside = e => {
+			if (!this.root.contains(e.target) && this.opened) {
+				if (opts.onclose) opts.onclose(this.date)
+				this.opened = false
+				this.update()
 			}
 		}
 
-		function buildCalendar() {
-			var cursor = moment(_this.date);
-			var end = moment(cursor);
+		var buildCalendar = () => {
+			var cursor = moment(this.date)
+			var end = moment(cursor)
 
 			// Set cursor to start of the month and start of the week
-			cursor.startOf('month');
-			cursor.day(0);
+			cursor.startOf('month')
+			cursor.day(0)
 			// end of month and end of week
-			end.endOf('month');
-			end.day(6);
+			end.endOf('month')
+			end.day(6)
 
-			_this.dayNames = [];
-			_this.days = [];
+			this.dayNames = []
+			this.days = []
 
 			while (cursor.isBefore(end)) {
-				if (_this.dayNames.length < 7) {
-					_this.dayNames.push(cursor.format('dd'));
-				}
+				if (this.dayNames.length < 7) this.dayNames.push(cursor.format('dd'))
 
-				_this.days.push({
+				this.days.push({
 					date: moment(cursor),
-					selected: _this.date.isSame(cursor, 'day'),
+					selected: this.date.isSame(cursor, 'day'),
 					today: moment().isSame(cursor, 'day'),
-					inMonth: _this.date.isSame(cursor, 'month')
-				});
+					inMonth: this.date.isSame(cursor, 'month')
+				})
 
-				cursor = cursor.add(1, 'days');
+				cursor = cursor.add(1, 'days')
 			}
-			_this.opts.date = _this.date.toDate();
-			_this.update();
+			this.opts.date = this.date.toDate()
+			this.update()
 		}
 
-		_this.on('mount', function () {
-			document.addEventListener('click', handleClickOutside);
-		});
+		this.on('mount', () => {
+			document.addEventListener('click', handleClickOutside)
+		})
 
-		_this.on('unmount', function () {
+		this.on('unmount', () => {
 			document.removeEventListener('click', handleClickOutside)
-		});
+		})
 
 		// Handle the clicks on dates
-		_this.changeDate = function (e) {
-			_this.date = e.item.day.date;
-			if (opts.onselect) {
-				opts.onselect(_this.date);
-			}
-			buildCalendar();
-		};
+		this.changeDate = e => {
+			this.date = e.item.day.date
+			if (opts.onselect) opts.onselect(this.date)
+			buildCalendar()
+		}
 
 		// Handle today shortcur
-		_this.setToday = function () {
-			_this.date = opts.date = moment();
-			if (opts.onselect) {
-				opts.onselect(_this.date);
-			}
-			buildCalendar();
-		};
+		this.setToday = () => {
+			this.date = opts.date = moment()
+			if (opts.onselect) opts.onselect(this.date)
+			buildCalendar()
+		}
 
 		// Handle the previous year change
-		_this.prevYear = function () {
-			_this.date.subtract(1, 'year');
-			buildCalendar();
-		};
+		this.prevYear = () => {
+			this.date.subtract(1, 'year')
+			buildCalendar()
+		}
 
 		// Handle the next month change
-		_this.nextYear = function () {
-			_this.date.add(1, 'year');
-			buildCalendar();
-		};
+		this.nextYear = () => {
+			this.date.add(1, 'year')
+			buildCalendar()
+		}
 
 		// Handle the previous month change
-		_this.prevMonth = function () {
-			_this.date.subtract(1, 'month');
-			buildCalendar();
-		};
+		this.prevMonth = () => {
+			this.date.subtract(1, 'month')
+			buildCalendar()
+		}
 
 		// Handle the next month change
-		_this.nextMonth = function () {
-			_this.date.add(1, 'month');
-			buildCalendar();
-		};
+		this.nextMonth = () => {
+			this.date.add(1, 'month')
+			buildCalendar()
+		}
 
 		// Show/hide the datepicker
-		_this.show = function () {
-			if (opts.onopen) {
-				opts.onopen();
-			}
-			buildCalendar();
-			_this.opened = true;
-		};
+		this.show = () => {
+			if (opts.onopen) opts.onopen()
+			buildCalendar()
+			this.opened = true
+		}
 	</script>
 
 	<style scoped>
